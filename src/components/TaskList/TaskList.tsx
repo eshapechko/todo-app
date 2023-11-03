@@ -2,9 +2,7 @@ import {Table} from 'react-bootstrap';
 import {useAppSelector} from '../../hooks';
 import {Task} from '../AddTask/Task/Task';
 
-type Props = {};
-
-export const TaskList = (props: Props) => {
+export const TaskList = () => {
   const tasks = useAppSelector((state) => state.tasks.tasks);
 
   return (
