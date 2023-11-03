@@ -10,12 +10,14 @@ export const Task = ({complete, task, id, index, importance}: Props) => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [taskValue, setTaskValue] = useState(task);
+  const [disabled, setDisabled] = useState(false);
   const [edit, setEdit] = useState(false);
 
   console.log('TASSSSSKKKKK');
 
   const handleComplete = () => {
     dispatch(completeTask(id));
+    setDisabled(true);
   };
 
   const handleEdit = () => {
@@ -73,16 +75,19 @@ export const Task = ({complete, task, id, index, importance}: Props) => {
           >
             Удалить
           </Button>
-          <Button className='btn btn-success me-3' onClick={handleComplete}>
+          <Button
+            className='btn btn-success me-3'
+            onClick={handleComplete}
+            disabled={disabled}
+          >
             Завершить
           </Button>
           <Button
-            // ref={editBtn}
             className='btn btn-secondary'
             data-id={id}
             onClick={handleEdit}
           >
-            Редактировать
+            {edit ? 'Сохранить' : 'Редактировать'}
           </Button>
         </td>
       </tr>
